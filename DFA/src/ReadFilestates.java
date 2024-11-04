@@ -8,6 +8,7 @@ public class ReadFilestates {
     private String fileName;
     private int line_count_i;
     private String[][] arr;
+    private String[][] ar;
 
     public ReadFilestates(String fileName) {
         this.fileName = fileName;
@@ -45,10 +46,21 @@ public class ReadFilestates {
             }
         }
     }
+    private void filter() {
+        ar= new String[arr.length][arr[0].length];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                if(!arr[i][j].equalsIgnoreCase("-1")) {
+                    ar[i][j]=arr[i][j];
+                }
+            }
+        }
+    }
     public String[][] call() throws FileNotFoundException, IOException {
         get_lines();
         split_lines();
         edit_lines();
-        return arr;
+        filter();
+        return ar;
     }
 }
