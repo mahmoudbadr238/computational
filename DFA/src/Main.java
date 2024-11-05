@@ -1,7 +1,8 @@
+import javax.swing.*;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class main {
+public class Main {
     public static void main (String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -10,8 +11,8 @@ public class main {
          
          // el file da shl msh m7tag shr7
          
-        String formulaFileName = "/home/ahmed-abdallah/x/computational/formula file.txt";     
-        String tableFileName = "/home/ahmed-abdallah/x/computational/Table File.txt"; 
+        String formulaFileName = JOptionPane.showInputDialog("Enter formula file name");
+        String tableFileName = JOptionPane.showInputDialog("Enter table file name");
 
         try {
             dfa dfaInstance = new dfa(formulaFileName,tableFileName);
