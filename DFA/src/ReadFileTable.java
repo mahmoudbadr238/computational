@@ -1,40 +1,39 @@
-import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 
 public class ReadFileTable {
 
     private String fileName;
-    private int line_count_i;
     private String[][] arr;
 
     public ReadFileTable(String fileName) {
         this.fileName = fileName;
     }
 
-    private void get_lines() throws FileNotFoundException, IOException {
-        BufferedReader Buffer = new BufferedReader(new FileReader(fileName));
-        long line_count = Buffer.lines().count();
-        line_count_i = (int) line_count;
-        Buffer.close();
-    }
+    private void get_lines() throws IOException {
+        try (BufferedReader buffer = new BufferedReader(new FileReader(fileName))) {
 
-    private void split_lines() throws FileNotFoundException, IOException {
-        BufferedReader Buffer = new BufferedReader(new FileReader(fileName));
-        int line_number = 0;
-        this.arr = new String[line_count_i][];
-        String line;
-        while ((line = Buffer.readLine()) != null) {
-            line = line.trim();
-            String[] elements = line.split(" ");
-            arr[line_number] = elements;
-            line_number++;
+            long lineCount = buffer.lines().count();
+            arr = new String[(int) lineCount][];
         }
-        Buffer.close();
     }
 
-    public String[][] call() throws FileNotFoundException, IOException {
+    private void split_lines() throws IOException {
+        try (BufferedReader buffer = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            int lineNumber = 0;
+            while ((line = buffer.readLine()) != null) {
+                line = line.trim();
+                String[] elements = line.split("\\s+"); 
+                arr[lineNumber] = elements;
+                lineNumber++;
+            }
+        }
+    }
+
+    public String[][] call() throws IOException {
         get_lines();
         split_lines();
         return arr;
