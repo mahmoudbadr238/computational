@@ -6,11 +6,6 @@ public class Main {
     public static void main (String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
-         // shof dynamic path ezay grbt bs fslt elsara7a aw n5yrha 3 7sb elghaz ele hy run 
-         
-         // el file da shl msh m7tag shr7
-         
         String formulaFileName = JOptionPane.showInputDialog("Enter formula file name");
         String tableFileName = JOptionPane.showInputDialog("Enter table file name");
 

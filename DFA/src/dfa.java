@@ -96,13 +96,9 @@ public class dfa {
      
     // and then go findSymbolIndex  to know which state the current state go with this symbol go and see what's happening there 
 
-    // delete unused system.out i made it just for fixing some  bugs and testing 
 
     private String getNextState(String currentState, char symbol) {
         int stateIndex = findStateIndex(currentState);
-
-        System.out.println(stateIndex);
-
 
         int symbolIndex = findSymbolIndex(String.valueOf(symbol));
 
@@ -154,7 +150,3 @@ public class dfa {
         return false;
     }
 }
-
-/**  if you want to disscuss tomorrow call me cause i will be in university at 11.30 to 1.30 so if you want to do it before 11.30
- call me cause mostly i don't see what'sApp masseges :"
- */
