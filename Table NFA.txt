@@ -1,0 +1,6 @@
+state a  b   ε
+q0   q1  _   q3
+q1    _  q2   _
+q2    _   _   _ 
+q3   q3   _   q4
+q4   q2   _   _
