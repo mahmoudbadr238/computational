@@ -74,11 +74,13 @@ public class nfa {
     private Set<String> getNextStates(String state, char c) {
         int stateIndex = findstateIndex(state);
         int symbolIndex = findSymbolIndex(String.valueOf(c));
-        if(stateIndex == -1 || symbolIndex == -1) {
+        if(stateIndex == -1 || symbolIndex == -1 ) {
+            System.out.println("Invalid transition: state = " + state + ", symbol = " + c);
             return null;
         }
-        String transition = states[stateIndex][symbolIndex];
-        if(transition.isEmpty()){
+        String transition = transitionTable[stateIndex][symbolIndex];
+        System.out.println("Transition for state " + state + ", symbol " + c + " -> " + transition);
+        if (transition.isEmpty()||transition.equalsIgnoreCase("_")) {
             return null;
         }
         return new HashSet<>(Arrays.asList(transition.split(" ")));
@@ -89,6 +91,7 @@ public class nfa {
                 return i;
             }
         }
+        System.out.println("state not found "+state);
         return -1;
     }
     private int findSymbolIndex(String symbol) {
@@ -97,6 +100,7 @@ public class nfa {
                 return i;
             }
         }
+        System.out.println("symbol not found "+symbol);
         return -1;
     }
     private boolean isAnyAcceptState(Set<String> states) {
@@ -125,6 +129,7 @@ public class nfa {
                 }
             }
         }
+        System.out.println("Epsilon clousre for states "+states+"->"+closure);
         return closure;
     }
 }
